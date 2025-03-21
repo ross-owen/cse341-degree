@@ -1,5 +1,5 @@
 ﻿const { body, validationResult } = require('express-validator')
-const contactValidationRules = () => {
+const courseValidationRules = () => {
     return [
         body('firstName', 'first name is required').not().isEmpty(),
         body('lastName', 'last name is required').not().isEmpty(),
@@ -24,6 +24,6 @@ const validate = (req, res, next) => {
 }
 
 module.exports = {
-    contactValidationRules,
+    courseValidationRules,
     validate,
 }
