@@ -5,7 +5,7 @@ const public = {
         title: 'Degree Planner',
         description: 'Track and Plan Classes'
     },
-    host: 'cse341-ross-degree.onrender.com',
+    host: 'cse341-degree-tracker.onrender.com',
     schemes: ['https'],
 };
 
@@ -21,4 +21,4 @@ const dev = {
 const outputFile = './swagger.json';
 const endpointsFiles = ['./routes/index.js'];
 
-swaggerAutogen(outputFile, endpointsFiles, dev);
+swaggerAutogen(outputFile, endpointsFiles, public);

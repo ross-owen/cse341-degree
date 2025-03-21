@@ -5,10 +5,10 @@
     "description": "Track and Plan Classes",
     "version": "1.0.0"
   },
-  "host": "localhost:3002",
+  "host": "cse341-degree-tracker.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
