@@ -11,16 +11,6 @@
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/courses/": {
       "get": {
         "tags": [
@@ -53,19 +43,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "courseId": {
                   "example": "any"
                 },
-                "lastName": {
+                "name": {
                   "example": "any"
                 },
-                "email": {
+                "credits": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "preRequisites": {
                   "example": "any"
                 },
-                "birthday": {
+                "groupId": {
                   "example": "any"
                 }
               }
@@ -120,7 +110,7 @@
           "Courses"
         ],
         "summary": "Update Course",
-        "description": "Update the course data for a specific course (by identifier)",
+        "description": "Update the course data for a specific course (by courseId)",
         "parameters": [
           {
             "name": "id",
@@ -134,19 +124,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "name": {
                   "example": "any"
                 },
-                "lastName": {
+                "credits": {
                   "example": "any"
                 },
-                "email": {
+                "preRequisites": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "groupId": {
                   "example": "any"
                 }
               }
@@ -154,14 +141,14 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "Successfully updated"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
           },
           "404": {
-            "description": "Resource not found"
+            "description": "Entity not found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -198,12 +185,164 @@
         }
       }
     },
-    "/api-docs/": {
+    "/groups/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Groups"
+        ],
+        "summary": "List Groups",
+        "description": "List all the groups in the database",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Create Group",
+        "description": "Create a new group and add it to the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/groups/{id}": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Find Group",
+        "description": "Find a group by the given identifier",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Update Group",
+        "description": "Update the group data for a specific group (by groupId)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Successfully updated"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Entity not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Delete Group",
+        "description": "Remove a group from the database (by identifier)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
