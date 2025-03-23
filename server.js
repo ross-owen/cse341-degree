@@ -7,7 +7,11 @@ const port = process.env.PORT || 3002;
 
 app
     .use(bodyParser.json())
-    .use('/', require('./routes'));
+    .use('/', require('./routes'))
+    .use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something broke!');
+    });
 
 mongo.init((err) => {
     if (err) {
