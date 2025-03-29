@@ -20,7 +20,11 @@ const list = async (req, res) => {
                     course.name,
                     course.credits,
                     course.preRequisites,
-                    course.groupId));
+                    course.groupId,
+                    course.year,
+                    course.semester,
+                    course.term,
+                    course.status));
             });
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(courses);
@@ -44,7 +48,11 @@ const create = async (req, res) => {
         req.body.name,
         req.body.credits,
         req.body.preRequisites,
-        req.body.groupId
+        req.body.groupId,
+        req.body.year,
+        req.body.semester,
+        req.body.term,
+        req.body.status
     );
     const result = await mongo.get().db().collection('courses').insertOne(course);
     res.setHeader('Content-Type', 'application/json');
@@ -53,7 +61,11 @@ const create = async (req, res) => {
             course.name,
             course.credits,
             course.preRequisites,
-            course.groupId));
+            course.groupId,
+            course.year,
+            course.semester,
+            course.term,
+            course.status));
     } else {
         res.status(500).json("Something went wrong");
     }
@@ -79,7 +91,11 @@ const getById = async (req, res) => {
             result.name,
             result.credits,
             result.preRequisites,
-            result.groupId));
+            result.groupId,
+            result.year,
+            result.semester,
+            result.term,
+            result.status));
     } else {
         res.status(404).send();
     }
@@ -102,8 +118,13 @@ const updateById = async (req, res) => {
         req.body.name,
         req.body.credits,
         req.body.preRequisites,
-        req.body.groupId
-    );
+        req.body.groupId,
+        req.body.year,
+        req.body.semester,
+        req.body.term,
+        req.body.status
+
+);
 
     const result = await mongo.get().db().collection('courses').replaceOne({courseId: course.courseId}, course);
     if (result.acknowledged) {

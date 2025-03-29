@@ -1,10 +1,14 @@
 ﻿class Course {
-    constructor(courseId, name, credits, preRequisites, groupId) {
+    constructor(courseId, name, credits, preRequisites, groupId, year, semester, term, status) {
         this.courseId = courseId;
         this.name = name;
         this.credits = credits;
         this.preRequisites = preRequisites;
         this.groupId = groupId;
+        this.year = year;
+        this.semester = semester;
+        this.term = term;
+        this.status = status;
     }
 }
 

@@ -4,10 +4,12 @@ const { validate, groupCreateValidationRules, groupUpdateValidationRules} = requ
 
 const controller = require('../controllers/groups');
 
+const {isAuthenticated} = require('../middlewares/authentication');
+
 router.get('/', controller.list);
-router.post('/', groupCreateValidationRules(), validate, controller.create);
+router.post('/', isAuthenticated, groupCreateValidationRules(), validate, controller.create);
 router.get('/:id', controller.getById);
-router.put('/:id', groupUpdateValidationRules(), validate, controller.updateById);
-router.delete('/:id', controller.deleteById);
+router.put('/:id', isAuthenticated, groupUpdateValidationRules(), validate, controller.updateById);
+router.delete('/:id', isAuthenticated, controller.deleteById);
 
 module.exports = router;
